@@ -1,0 +1,94 @@
+---
+import { site, navLinks } from '../../data/site';
+import { isPendente } from '../../lib/pendente';
+import Icon from '../ui/Icon.astro';
+import Pendente from '../ui/Pendente.astro';
+import ThemeToggle from '../react/ThemeToggle';
+
+const social = [
+  { nome: 'LinkedIn', href: site.linkedin, icone: 'linkedin' as const },
+  { nome: 'GitHub', href: site.github, icone: 'github' as const },
+];
+const linkCls =
+  'inline-flex min-h-11 items-center px-3 font-mono text-small text-text no-underline hover:text-accent';
+---
+
+<header class="fixed inset-x-0 top-0 z-40 border-b border-border bg-bg">
+  <div class="container-x flex min-h-16 items-center justify-between gap-4">
+    <a
+      href="#inicio"
+      class="inline-flex min-h-11 items-center font-mono font-semibold text-text no-underline"
+    >
+      {site.nome}
+    </a>
+
+    <nav aria-label="Principal" class="flex min-w-0 items-center justify-end gap-1">
+      <!-- Desktop -->
+      <ul class="hidden list-none items-center gap-1 p-0 md:flex">
+        {navLinks.map((l) => (
+          <li>
+            <a href={l.href} class={linkCls}>
+              {l.rotulo}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <ul class="flex list-none items-center gap-1 p-0">
+        {social.map((s) => (
+          <li>
+            {isPendente(s.href) ? (
+              <Pendente id={s.href} />
+            ) : (
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${s.nome} (abre em nova aba)`}
+                class="inline-flex min-h-11 min-w-11 items-center justify-center text-text hover:text-accent"
+              >
+                <Icon nome={s.icone} />
+              </a>
+            )}
+          </li>
+        ))}
+        <li>
+          <ThemeToggle client:idle />
+        </li>
+      </ul>
+
+      <!-- Mobile: menu colapsável sem JS (<details>) -->
+      <details id="menu-mobile" class="relative md:hidden">
+        <summary
+          class="inline-flex min-h-11 min-w-11 cursor-pointer list-none items-center justify-center rounded-md border border-border bg-surface text-text [&::-webkit-details-marker]:hidden"
+          aria-label="Menu"
+        >
+          <Icon nome="menu" />
+        </summary>
+        <ul class="absolute right-0 top-full mt-2 w-56 list-none rounded-card border border-border bg-surface p-2">
+          {navLinks.map((l) => (
+            <li>
+              <a href={l.href} class={linkCls + ' w-full'}>
+                {l.rotulo}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Melhoria progressiva: fecha o menu ao escolher um link ou apertar Esc.
+  const menu = document.getElementById('menu-mobile') as HTMLDetailsElement | null;
+  menu?.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a')) menu.open = false;
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu?.open) {
+      menu.open = false;
+      menu.querySelector('summary')?.focus();
+    }
+  });
+</script>

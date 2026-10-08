@@ -1,0 +1,25 @@
+---
+import { site } from '../../data/site';
+import Button from '../ui/Button.astro';
+import SectionTitle from '../ui/SectionTitle.astro';
+---
+
+<section id="contato" aria-labelledby="titulo-contato" class="secao border-t border-border">
+  <div class="container-x">
+    <SectionTitle id="titulo-contato" eyebrow="// 05">
+      Vamos conversar?
+    </SectionTitle>
+    <p>Estou aberto a vagas remotas júnior e a projetos freelance.</p>
+    <div class="mt-6 flex flex-wrap items-center gap-3">
+      <Button href={`mailto:${site.email}`} variant="primario">
+        {site.email}
+      </Button>
+      <Button href={site.linkedin} external>
+        LinkedIn
+      </Button>
+      <Button href={site.github} external>
+        GitHub
+      </Button>
+    </div>
+  </div>
+</section>

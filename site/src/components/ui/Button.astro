@@ -1,0 +1,39 @@
+---
+// Vira <a> quando tem href. Se o href ainda for TODO_*, mostra a marcação de pendência.
+import { isPendente } from '../../lib/pendente';
+import Pendente from './Pendente.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  href: string;
+  variant?: 'primario' | 'secundario';
+  external?: boolean;
+  class?: string;
+}
+const { href, variant = 'secundario', external = false, class: classe = '' } = Astro.props;
+
+const base =
+  'inline-flex min-h-11 items-center justify-center gap-2 rounded-btn px-5 py-2 font-mono text-small font-semibold no-underline transition-colors duration-150 ease-out';
+const estilos = {
+  primario: 'bg-accent text-accent-contrast hover:opacity-90',
+  secundario: 'border border-border bg-surface text-text hover:border-accent',
+};
+---
+
+{isPendente(href) ? (
+  <Pendente id={href} />
+) : (
+  <a
+    href={href}
+    class:list={[base, estilos[variant], classe]}
+    {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+  >
+    <slot />
+    {external && (
+      <>
+        <Icon nome="external" class="h-4 w-4" />
+        <span class="sr-only">(abre em nova aba)</span>
+      </>
+    )}
+  </a>
+)}

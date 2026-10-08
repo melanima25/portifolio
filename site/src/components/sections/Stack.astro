@@ -1,0 +1,28 @@
+---
+import { grupos } from '../../data/stack';
+import SectionTitle from '../ui/SectionTitle.astro';
+import Badge from '../ui/Badge.astro';
+---
+
+<section id="stack" aria-labelledby="titulo-stack" class="secao border-t border-border">
+  <div class="container-x">
+    <SectionTitle id="titulo-stack" eyebrow="// 03">
+      Com o que trabalho
+    </SectionTitle>
+    <p class="mb-6 text-text-muted">Tecnologias que usei no CRM Lava Jato.</p>
+    <div class="grid gap-6 sm:grid-cols-2">
+      {grupos.map((g) => (
+        <div>
+          <h3 class="mb-3 text-h3 text-text">{g.nome}</h3>
+          <ul class="flex list-none flex-wrap gap-2 p-0">
+            {g.itens.map((i) => (
+              <li>
+                <Badge>{i}</Badge>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+defaults:
+  run:
+    working-directory: site
+
+jobs:
+  qualidade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: site/.nvmrc
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test --if-present
+
+      # Pull request: build de desenvolvimento (pendências TODO_* viram só aviso).
+      - name: Build (dev, com avisos)
+        if: github.event_name == 'pull_request'
+        run: npm run build
+
+      # main: build estrito, falha se sobrar TODO_* (ADR, DO-4). Requer a variável SITE_URL no repositório.
+      - name: Build de produção (estrito)
+        if: github.event_name == 'push'
+        run: npm run build:prod
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+
+      - name: Lighthouse CI
+        if: github.event_name == 'push'
+        run: npx --yes @lhci/cli@0.14 autorun --config=lighthouserc.json

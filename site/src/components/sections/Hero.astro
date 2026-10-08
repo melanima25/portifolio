@@ -1,0 +1,32 @@
+---
+import { site } from '../../data/site';
+import Button from '../ui/Button.astro';
+---
+
+<section id="inicio" aria-labelledby="titulo-hero" class="secao pt-32 md:pt-40">
+  <div class="container-x">
+    <p class="mb-6 font-mono text-small text-text-muted">
+      <span aria-hidden="true">&gt; </span>breno --status
+      <span class="text-accent">
+        <span aria-hidden="true">→ </span>disponível para vaga remota
+      </span>
+      <span class="cursor text-accent" aria-hidden="true">
+        ▌
+      </span>
+    </p>
+    <h1 id="titulo-hero" class="text-hero font-bold text-text">
+      {site.nome} — {site.cargo}
+    </h1>
+    <p class="mt-6 text-lg text-text-muted">
+      Construo sistemas web que resolvem problemas reais. Meu primeiro CRM está em produção em um
+      lava jato real.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <Button href="#projetos" variant="primario">
+        Ver projetos
+      </Button>
+      <Button href="#contato">Falar comigo</Button>
+      {site.cv && <Button href={site.cv}>Baixar CV</Button>}
+    </div>
+  </div>
+</section>

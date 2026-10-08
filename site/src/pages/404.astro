@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title={`Página não encontrada | ${site.nome}`}
+  description="A página que você procura não existe."
+>
+  <section class="secao pt-32 md:pt-40" aria-labelledby="titulo-404">
+    <div class="container-x">
+      <h1 id="titulo-404" class="text-hero font-bold">
+        Página não encontrada
+      </h1>
+      <p class="mt-6 text-text-muted">O endereço digitado não existe ou foi movido.</p>
+      <div class="mt-8">
+        <Button href="/" variant="primario">
+          Voltar ao início
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

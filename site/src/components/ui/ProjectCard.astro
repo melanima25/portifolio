@@ -1,0 +1,80 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import Badge from './Badge.astro';
+import Button from './Button.astro';
+
+interface Props {
+  projeto: CollectionEntry<'projetos'>;
+  variant?: 'destaque' | 'padrao';
+}
+const { projeto, variant = 'padrao' } = Astro.props;
+const { titulo, resumo, status, stack, links, imagem, imagemAlt } = projeto.data;
+
+const rotulos = {
+  producao: 'Em produção',
+  concluido: 'Concluído',
+  'em-andamento': 'Em andamento',
+  'em-breve': 'Em breve',
+} as const;
+const emBreve = status === 'em-breve';
+const demo = links?.demo;
+const repo = links?.repo;
+---
+
+<li
+  class:list={[
+    'flex flex-col gap-4 rounded-card border border-border bg-surface p-6',
+    variant === 'destaque' && 'sm:col-span-2 lg:col-span-2 lg:row-span-2',
+  ]}
+>
+  {imagem && (
+    <Image
+      src={imagem}
+      alt={imagemAlt ?? ''}
+      widths={[480, 800, 1200]}
+      sizes="(min-width: 1024px) 560px, (min-width: 640px) 50vw, 100vw"
+      format="webp"
+      loading="lazy"
+      class="h-auto w-full rounded-btn border border-border"
+    />
+  )}
+  <div>
+    <Badge variant={emBreve ? 'aviso' : 'sucesso'}>{rotulos[status]}</Badge>
+  </div>
+  <h3 class="text-h3 text-text">{titulo}</h3>
+  <p class="text-text-muted">{resumo}</p>
+
+  {stack.length > 0 && (
+    <ul class="flex list-none flex-wrap gap-2 p-0" aria-label="Tecnologias">
+      {stack.map((t) => (
+        <li>
+          <Badge>{t}</Badge>
+        </li>
+      ))}
+    </ul>
+  )}
+
+  {!emBreve && (
+    <div class="mt-auto flex flex-wrap items-center gap-3 pt-2">
+      {demo && (
+        <Button href={demo} variant="primario" external>
+          Ver demo
+        </Button>
+      )}
+      {repo && (
+        <Button href={repo} variant="primario" external>
+          Ver código
+        </Button>
+      )}
+      {variant === 'destaque' && (
+        <a
+          href="#estudo-de-caso"
+          class="inline-flex min-h-11 items-center gap-1 font-mono text-small"
+        >
+          Ler estudo de caso <span aria-hidden="true">↓</span>
+        </a>
+      )}
+    </div>
+  )}
+</li>

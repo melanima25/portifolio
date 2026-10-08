@@ -1,0 +1,55 @@
+---
+import { render } from 'astro:content';
+import { Image } from 'astro:assets';
+import { getDestaque } from '../../lib/projetos';
+import SectionTitle from '../ui/SectionTitle.astro';
+import Button from '../ui/Button.astro';
+
+const projeto = await getDestaque();
+const { Content } = await render(projeto);
+const { galeria, links } = projeto.data;
+---
+
+<section id="estudo-de-caso" aria-labelledby="titulo-estudo" class="secao border-t border-border">
+  <div class="container-x">
+    <SectionTitle id="titulo-estudo" eyebrow="// 02">
+      Como construí o CRM do lava jato
+    </SectionTitle>
+    <div class="prosa">
+      <Content />
+    </div>
+    {links?.repo && (
+      <div class="mt-4">
+        <Button href={links.repo} variant="primario" external>
+          Ver código
+        </Button>
+      </div>
+    )}
+    {galeria && galeria.length > 0 && (
+      <div class="mt-12">
+        <h3 class="mb-2 text-h3 text-text">Telas do sistema</h3>
+        <p class="mb-6 text-small text-text-muted">
+          Dados pessoais de clientes desfocados; os valores são do uso real.
+        </p>
+        <ul class="grid list-none grid-cols-1 gap-6 p-0 md:grid-cols-2">
+          {galeria.map((g) => (
+            <li>
+              <figure>
+                <Image
+                  src={g.imagem}
+                  alt={g.alt}
+                  widths={[480, 800, 1200]}
+                  sizes="(min-width: 1024px) 560px, (min-width: 768px) 45vw, 100vw"
+                  format="webp"
+                  loading="lazy"
+                  class="h-auto w-full rounded-card border border-border"
+                />
+                <figcaption class="mt-2 text-small text-text-muted">{g.legenda}</figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+</section>

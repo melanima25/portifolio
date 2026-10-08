@@ -1,0 +1,4 @@
+# Cloudflare Pages (config opcional; o deploy é feito pela integração Git do Cloudflare).
+name = "portfolio-breno"
+pages_build_output_dir = "./dist"
+compatibility_date = "2026-10-01"

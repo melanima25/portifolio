@@ -1,0 +1,21 @@
+---
+// Badge de status/stack. O significado está no texto, nunca só na cor.
+interface Props {
+  variant?: 'neutro' | 'sucesso' | 'aviso';
+}
+const { variant = 'neutro' } = Astro.props;
+const estilos = {
+  neutro: 'border-border text-text-muted',
+  sucesso: 'border-accent text-accent',
+  aviso: 'border-warn text-warn',
+};
+---
+
+<span
+  class:list={[
+    'inline-flex items-center rounded-btn border px-2 py-0.5 font-mono text-small',
+    estilos[variant],
+  ]}
+>
+  <slot />
+</span>

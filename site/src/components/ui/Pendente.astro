@@ -1,0 +1,13 @@
+---
+// Marca uma pendência TODO_*. No build estrito (build:prod) lança erro.
+import { reportar } from '../../lib/pendente';
+interface Props {
+  id: string;
+}
+const { id } = Astro.props;
+reportar(id);
+---
+
+<mark class="pendente" title="Pendente de preenchimento">
+  pendente: {id}
+</mark>

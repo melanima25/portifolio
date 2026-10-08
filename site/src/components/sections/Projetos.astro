@@ -1,0 +1,24 @@
+---
+import { getProjetosOrdenados } from '../../lib/projetos';
+import BentoGrid from '../ui/BentoGrid.astro';
+import ProjectCard from '../ui/ProjectCard.astro';
+import SectionTitle from '../ui/SectionTitle.astro';
+
+const projetos = await getProjetosOrdenados();
+---
+
+<section id="projetos" aria-labelledby="titulo-projetos" class="secao">
+  <div class="container-x">
+    <SectionTitle id="titulo-projetos" eyebrow="// 01">
+      Projetos
+    </SectionTitle>
+    <BentoGrid>
+      {projetos.map((p) => (
+        <ProjectCard projeto={p} variant={p.data.destaque ? 'destaque' : 'padrao'} />
+      ))}
+    </BentoGrid>
+    <p class="mt-8 text-text-muted">
+      Novos projetos entram aqui conforme ficam prontos — acompanhe no GitHub.
+    </p>
+  </div>
+</section>

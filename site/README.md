@@ -26,7 +26,7 @@ Para o build de produção: `SITE_URL=https://seu-dominio npm run build:prod` (v
 - `src/content/projetos/*.md` — content collection; **adicionar projeto = criar 1 arquivo** (schema em `src/content.config.ts`)
 - `src/data/` — `site.ts` (links/contato) e `stack.ts`
 - `src/styles/global.css` — tokens (cores, tipografia, tema claro/escuro)
-- `public/_headers`, `wrangler.toml` — configuração do Cloudflare Pages
+- `public/_headers`, `wrangler.toml` — configuração do Cloudflare (Workers com arquivos estáticos)
 - `../.github/workflows/ci.yml` — CI (lint, typecheck, build; main = build estrito + Lighthouse)
 
 ## Como funcionam as pendências
@@ -38,18 +38,20 @@ build, então placeholders nunca chegam à produção.
 ## O que falta preencher
 
 - `TODO_OG_IMAGE` (`site.ts`) — imagem 1200x630 em `public/`
-- `SITE_URL` — domínio final ou `*.pages.dev` (variável de ambiente no `build:prod`)
+- `SITE_URL` — domínio final ou `*.workers.dev` (variável de ambiente no `build:prod`)
 - Opcional: `cv` em `site.ts` (PDF em `public/`); sem ele o botão "Baixar CV" não aparece.
 
 O CRM não tem demo pública (uso interno do cliente, login de usuário único); o card mostra
 "Ver código" (repositório público) e as telas ficam na galeria do estudo de caso
 (`galeria` no frontmatter de `src/content/projetos/crm-lava-jato.md`, com alt obrigatório).
 
-## Deploy (Cloudflare Pages)
+## Deploy (Cloudflare Workers, arquivos estáticos)
 
 Conecte o repositório pela integração Git: diretório raiz `site`, comando de build
-`npm run build:prod` (produção) e saída `dist`. Defina `SITE_URL` nas variáveis do projeto e no
-GitHub (Settings > Variables). Nenhum deploy foi feito.
+`npm run build:prod`, comando de deploy `npx wrangler deploy` (lê `wrangler.toml`, que publica a
+pasta `dist`). O `name` do `wrangler.toml` deve ser igual ao nome do projeto no painel. Defina
+`SITE_URL` e `NODE_VERSION=22` nas variáveis de build do projeto e `SITE_URL` no GitHub
+(Settings > Variables).
 
 ## Uso de IA
 

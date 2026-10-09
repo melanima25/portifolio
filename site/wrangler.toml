@@ -1,4 +1,8 @@
-# Cloudflare Pages (config opcional; o deploy é feito pela integração Git do Cloudflare).
-name = "portfolio-breno"
-pages_build_output_dir = "./dist"
+# Cloudflare Workers com arquivos estáticos (o deploy é feito pela integração Git do Cloudflare).
+# O "name" precisa ser igual ao nome do projeto criado no painel.
+name = "portifolio"
 compatibility_date = "2026-10-01"
+
+[assets]
+directory = "./dist"
+not_found_handling = "404-page"

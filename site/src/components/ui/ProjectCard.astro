@@ -24,8 +24,7 @@ const repo = links?.repo;
 
 <li
   class:list={[
-    'flex flex-col gap-4 rounded-card border border-border bg-surface p-6',
-    variant === 'destaque' && 'sm:col-span-2 lg:col-span-2 lg:row-span-2',
+    'flex flex-col gap-3 rounded-card border border-border bg-surface p-5',
   ]}
 >
   {imagem && (
@@ -33,10 +32,10 @@ const repo = links?.repo;
       src={imagem}
       alt={imagemAlt ?? ''}
       widths={[480, 800, 1200]}
-      sizes="(min-width: 1024px) 560px, (min-width: 640px) 50vw, 100vw"
+      sizes="(min-width: 640px) 50vw, 100vw"
       format="webp"
       loading="lazy"
-      class="h-auto w-full rounded-btn border border-border"
+      class="aspect-[5/2] w-full rounded-btn border border-border object-cover object-top"
     />
   )}
   <div>

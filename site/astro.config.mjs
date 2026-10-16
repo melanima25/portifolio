@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import { unified } from '@astrojs/markdown-remark';
 import { rehypePendente } from './src/lib/rehype-pendente.mjs';
 
 // Modo estrito (build:prod): qualquer pendência TODO_* derruba o build (ADR, DO-4).
@@ -17,6 +18,6 @@ if (strict && !site) {
 export default defineConfig({
   site,
   integrations: [react(), sitemap()],
-  markdown: { rehypePlugins: [[rehypePendente, { strict }]] },
+  markdown: { processor: unified({ rehypePlugins: [[rehypePendente, { strict }]] }) },
   vite: { plugins: [tailwindcss()] },
 });

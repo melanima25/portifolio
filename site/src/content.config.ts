@@ -1,4 +1,5 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
 // Schema da collection "projetos" (ARQUITETURA seção 5). Adicionar projeto = criar 1 .md.
@@ -16,8 +17,8 @@ const projetos = defineCollection({
         cliente: z.string().optional(),
         links: z
           .object({
-            demo: z.string().url().optional(),
-            repo: z.string().url().optional(),
+            demo: z.url().optional(),
+            repo: z.url().optional(),
             estudoDeCaso: z.string().optional(),
           })
           .optional(),

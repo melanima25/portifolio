@@ -1,6 +1,6 @@
 ---
 titulo: 'Chatbot com IA (RAG)'
-resumo: 'Chatbot de atendimento que responde só com base nos documentos do negócio e cita a fonte. Em construção: já ingere a base de conhecimento e faz a busca por similaridade. Negócio e dados 100% fictícios.'
+resumo: 'Chatbot que responde só com base nos documentos do negócio e cita a fonte. Em construção: ingestão e busca prontas. Dados 100% fictícios.'
 status: em-andamento
 ordem: 4
 stack: ['TypeScript', 'Hono', 'PostgreSQL', 'pgvector', 'Drizzle']

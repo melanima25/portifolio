@@ -1,7 +1,10 @@
 ---
 titulo: 'Chatbot com IA (RAG)'
-resumo: 'Atendimento automatizado com base de conhecimento própria.'
-status: em-breve
+resumo: 'Chatbot de atendimento que responde só com base nos documentos do negócio e cita a fonte. Em construção: já ingere a base de conhecimento e faz a busca por similaridade. Negócio e dados 100% fictícios.'
+status: em-andamento
 ordem: 4
-stack: []
+stack: ['TypeScript', 'Hono', 'PostgreSQL', 'pgvector', 'Drizzle']
+links:
+  repo: 'https://github.com/melanima25/chatbot-rag'
+usoDeIA: 'Desenvolvido com apoio de agentes de IA, com revisão e testes de cada entrega.'
 ---

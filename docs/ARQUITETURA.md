@@ -305,7 +305,7 @@ Dependências entre parênteses. Cada tarefa termina com commit pequeno e descri
 13. **dev-frontend · FE-6** (QA-3) Correções apontadas pelo QA.
 
 ### Fase 4 — Revisão e publicação
-14. **revisor-codigo · RV-1** (FE-6) Revisar: aderência a este documento, tipagem estrita, componentes sem duplicação, nenhum dado sensível (hospital, pacientes, setores, pessoas, dados de clientes do lava jato), nenhum link/métrica inventado, README com o "porquê" + seção "Como usei IA".
+14. **revisor-codigo · RV-1** (FE-6) Revisar: aderência a este documento, tipagem estrita, componentes sem duplicação, nenhum dado sensível (instituição de trabalho, pacientes, setores, pessoas, dados de clientes do lava jato), nenhum link/métrica inventado, README com o "porquê" + seção "Como usei IA".
 15. **dev-frontend · FE-7** (RV-1) Ajustes da revisão.
 16. **devops-deploy · DO-5** (FE-7, BR-1) Substituir `TODO_*` com dados do Breno, CI de produção verde (sem `TODO_`, Lighthouse ≥ 95), domínio/`pages.dev` publicado, URL entregue para LinkedIn ("Em destaque") e README de perfil do GitHub.
 

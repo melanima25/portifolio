@@ -21,7 +21,7 @@ Consolidação de 4 pesquisas (vagas, layouts, ferramentas, conteúdo). Fatos t�
 ## 3. Layout da landing page
 - Recrutadores valorizam projetos completos e publicados, 3–5 bons > 10 medianos, README com o "porquê" das decisões.
 - Tendências 2026: bento grid, tipografia grande, dark mode, microinterações, `clamp()`. Evitar glassmorphism (saturado) [I].
-- **Wireframe:** header fixo → hero ("dev júnior, vaga remota" + CTAs) → projetos em bento grid (CRM Lava Jato em destaque) → estudo de caso → stack → sobre (hospital → programação) → contato.
+- **Wireframe:** header fixo → hero ("dev júnior, vaga remota" + CTAs) → projetos em bento grid (CRM Lava Jato em destaque) → estudo de caso → stack → sobre (área da saúde → programação) → contato.
 - **Direção recomendada [I]:** A) Dev Terminal Escuro (#0B0F14, acento #3DDC97, mono nos títulos + Inter), com toggle de tema claro. Alternativas: B) Claro Editorial, C) Brutalista.
 - Referência principal: brittanychiang.com. Metas: Lighthouse ≥ 95, LCP ≤ 2,5 s, acessibilidade (HTML semântico, `prefers-reduced-motion`).
 
@@ -34,7 +34,7 @@ Consolidação de 4 pesquisas (vagas, layouts, ferramentas, conteúdo). Fatos t�
 
 ## 5. Projetos propostos (ordem sugerida)
 1. **CRM v2 multiusuário** (React + Node/TS + Postgres, auth, testes, deploy) — evolução do lava jato.
-2. **Dashboard de indicadores** com dados fictícios, inspirado na rotina do hospital (upload semanal por setor, consolidação mensal/anual, exportação). Nunca usar dados reais de pacientes.
+2. **Dashboard de indicadores** com dados fictícios, inspirado na rotina da área da saúde (upload semanal por unidade, consolidação mensal/anual, exportação). Nunca usar dados reais de pacientes.
 3. **Automação/integração** (webhooks, APIs, relatório automático).
 4. **Chatbot de IA com base de conhecimento (RAG)** para atendimento.
 5. **Landing page de conversão** com SEO e Lighthouse.
